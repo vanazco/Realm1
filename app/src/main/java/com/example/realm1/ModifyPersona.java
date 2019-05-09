@@ -12,7 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 public class ModifyPersona extends AppCompatActivity {
-    EditText name,surname,gender,age;
+    EditText name,gender,age;
     Button btn_del;
     TextView dni;
 
@@ -23,7 +23,6 @@ public class ModifyPersona extends AppCompatActivity {
 
         dni = findViewById(R.id.modify_dni);
         name = findViewById(R.id.modify_name);
-        surname = findViewById(R.id.modify_surname);
         age = findViewById(R.id.modify_age);
         gender = findViewById(R.id.modify_gender);
         btn_del = findViewById(R.id.btn_modify);
@@ -34,7 +33,6 @@ public class ModifyPersona extends AppCompatActivity {
 
         dni.setText(str_dni);
         name.setText(intent.getStringExtra("name"));
-        surname.setText(intent.getStringExtra("surname"));
         age.setText(String.valueOf(age2));
         gender.setText(intent.getStringExtra("gender"));
 
@@ -46,8 +44,7 @@ public class ModifyPersona extends AppCompatActivity {
                     @Override
                     public void execute(Realm realm) {
                         RealmResults<Persona> personas = realm.where(Persona.class).equalTo("dni",str_dni).findAll();
-                        personas.setValue("name",name.getText().toString());
-                        personas.setValue("surname",surname.getText().toString());
+                        personas.setValue("fullName",name.getText().toString());
                         personas.setValue("age",Integer.parseInt(age.getText().toString()));
                         personas.setValue("gender",gender.getText().toString());
                     }

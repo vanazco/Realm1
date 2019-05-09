@@ -11,7 +11,12 @@ public class MyApplication extends Application {
         super.onCreate();
         //Iniciem el realm
         Realm.init(this);
-        RealmConfiguration config = new RealmConfiguration.Builder().name("myrealm.realm").build();
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("myrealm.realm")
+                .schemaVersion(1)
+                .migration(new Migration())
+                .build();
         Realm.setDefaultConfiguration(config);
+
     }
 }

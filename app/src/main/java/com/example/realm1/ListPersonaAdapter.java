@@ -23,7 +23,7 @@ public class ListPersonaAdapter extends RealmBaseAdapter<Persona> implements Lis
     }
 
     private static class ViewHolder{
-        TextView dni,name,surname,gender,age;
+        TextView dni,name,gender,age;
         ImageButton btn_delete;
     }
 
@@ -35,7 +35,6 @@ public class ListPersonaAdapter extends RealmBaseAdapter<Persona> implements Lis
             viewHolder = new ViewHolder();
             viewHolder.dni = convertView.findViewById(R.id.persona_dni);
             viewHolder.name = convertView.findViewById(R.id.persona_name);
-            viewHolder.surname = convertView.findViewById(R.id.persona_surname);
             viewHolder.age = convertView.findViewById(R.id.persona_age);
             viewHolder.gender = convertView.findViewById(R.id.persona_gender);
             viewHolder.btn_delete = convertView.findViewById(R.id.btn_delete);
@@ -46,8 +45,7 @@ public class ListPersonaAdapter extends RealmBaseAdapter<Persona> implements Lis
 
         final Persona item = adapterData.get(position);
         viewHolder.dni.setText(item.getDni());
-        viewHolder.name.setText(item.getName());
-        viewHolder.surname.setText(item.getSurname());
+        viewHolder.name.setText(item.getFullName());
         viewHolder.age.setText(String.valueOf(item.getAge()));
         viewHolder.gender.setText(item.getGender());
         viewHolder.btn_delete.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +60,7 @@ public class ListPersonaAdapter extends RealmBaseAdapter<Persona> implements Lis
             public void onClick(View v) {
                 Intent intent = new Intent(finalConvertView.getContext(),ModifyPersona.class);
                 intent.putExtra("dni",item.getDni());
-                intent.putExtra("name",item.getName());
-                intent.putExtra("surname",item.getSurname());
+                intent.putExtra("name",item.getFullName());
                 intent.putExtra("age",item.getAge());
                 intent.putExtra("gender",item.getGender());
                 finalConvertView.getContext().startActivity(intent);

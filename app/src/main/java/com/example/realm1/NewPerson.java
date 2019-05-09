@@ -10,7 +10,7 @@ import android.widget.Toast;
 import io.realm.Realm;
 
 public class NewPerson extends AppCompatActivity {
-    EditText dni,name,surname,gender,age;
+    EditText dni,name,gender,age;
     Button btn_add;
 
     @Override
@@ -20,7 +20,6 @@ public class NewPerson extends AppCompatActivity {
 
         dni = findViewById(R.id.new_dni);
         name = findViewById(R.id.new_name);
-        surname = findViewById(R.id.new_surname);
         age = findViewById(R.id.new_age);
         gender = findViewById(R.id.new_gender);
         btn_add = findViewById(R.id.btn_add);
@@ -33,8 +32,7 @@ public class NewPerson extends AppCompatActivity {
                     Realm realm = Realm.getDefaultInstance();
                     realm.beginTransaction();
                     Persona persona = realm.createObject(Persona.class,dni.getText().toString());
-                    persona.setName(name.getText().toString());
-                    persona.setSurname(surname.getText().toString());
+                    persona.setFullName(name.getText().toString());
                     persona.setAge(Integer.parseInt(age.getText().toString()));
                     persona.setGender(gender.getText().toString());
                     realm.commitTransaction();
